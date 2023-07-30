@@ -1,0 +1,350 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;1,200&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+a{
+    text-decoration: none;
+    color: #fff;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('../images/email-tracker.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Mantém o fundo fixo em relação à janela de visualização */
+
+}
+
+.wrapper{
+    width: 1120px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0,0,0, .2);
+    color: #fff;
+    border-radius: 10px;
+    padding: 30px 60px;
+    margin-top: 50px;
+}
+
+.wrapper h1{
+    font-size: 36px;
+    text-align: center;
+}
+.wrapper p{
+    font-size: 16px;
+    text-align: center;
+}
+
+.social-icons{
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.social-icons i {
+    margin-left: 10px;
+    font-size: 22px;
+    color: #4f86ec;
+}
+
+
+
+.wrapper .input-box{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30px 0;
+}
+
+#block-form{
+    pointer-events: none;
+
+}
+
+.input-box input{
+    /* pointer-events: none; */
+    width: 100%;
+    height: 50px;
+    
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, .2);
+
+    font-size: 16px;
+    color: #fff;
+    padding: 0 10px;
+}
+
+.input-box button{
+    
+    background-color: #4185f4;
+    border: none;
+    width: 80px;
+    height: 54px;
+    margin-left: 4px;
+}
+
+
+
+.input-box button i {
+    transition: 0.5s;
+    font-size: 28px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.input-box button i:hover {
+    transition: 0.5s;
+    font-size: 28px;
+    color: yellow;
+    cursor: pointer;
+}
+
+/* --- */
+
+.remember-forgot{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    
+}
+
+.remember-forgot .logout{
+    font-weight: 600;
+    transition: 0.5s;    
+}
+
+.remember-forgot .logout:hover{
+    color: yellow;
+    font-weight: 600;
+    transition: 0.5s;    
+}
+
+.remember-forgot .social-login{
+    background: #4185f4;
+    transition: 0.5s;
+    margin-top: 25px;
+    width: 230px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    
+}
+
+.remember-forgot .social-login:hover{
+    background: #3e6fca;
+    transition: 0.5s;
+    margin-top: 25px;
+    width: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    
+}
+
+
+
+.remember-forgot .social-login i {
+    margin-right: 10px;
+}
+
+
+.content-email{
+    margin: 50px 0;
+    background-color: #ffffff;
+    padding: 30px 60px;
+    border-radius: 10px;
+}
+
+
+.content-email-loop{
+    margin: 40px 0;
+    
+    padding: 30px 60px;
+    background: #f7f7f7;
+    border-right: 1px solid #000;
+  
+    
+   
+  
+}
+.email-detail{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.content-email-loop ul{
+    margin-top: 20px;
+
+}
+
+.content-email-loop ul li{
+    margin-top: 18px;
+
+}
+
+.p-detail{
+    font-size: 15px;
+    margin-left: 20px;
+    margin-top: 5px;
+
+}
+
+.content-email-loop hr{
+    margin-top: 5px;
+    border-width: 1px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Media Query */
+@media (max-width: 963px)
+{
+   .wrapper{
+        width: 620px;
+        transition: 0.5s;
+   }
+}
+
+@media (max-width: 763px)
+{
+   .wrapper{
+        width: 420px;
+        transition: 0.5s;
+   }
+
+   .wrapper h1{
+        transition: 0.5s;
+        font-size: 28px;
+        text-align: center;
+    }
+
+    .wrapper p{
+        transition: 0.5s;
+        font-size: 14px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 561px)
+{
+    body{
+        min-height: 100vh;
+    }
+
+   .wrapper{
+        width: 100%;
+        transition: 0.5s;
+        padding: 10px 10px;
+        margin: 50px 10px;
+   }
+
+   .wrapper h1{
+        transition: 0.5s;
+        font-size: 28px;
+        text-align: center;
+    }
+
+    .wrapper p{
+        transition: 0.5s;
+        font-size: 12px;
+        text-align: center;
+    }
+
+    .wrapper .input-box{
+        width: 100%;
+        height: 50px;
+        justify-content: space-between;
+        align-items: center;
+        margin: 30px 0;
+        /* display: block; /* Alterado de "display: inline-block;" para "display: block;" */
+    }
+
+    .remember-forgot .social-login{
+        background: #4185f4;
+        transition: 0.5s;
+        margin-top: 25px;
+        width: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 30px;
+        padding: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;  
+    }
+    
+    .remember-forgot .social-login:hover{
+        background: #3e6fca;
+        transition: 0.5s;
+        margin-top: 25px;
+        width: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 30px;
+        padding: 10px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        
+    }
+    
+    .remember-forgot .social-login i {
+        margin-right: 10px;
+    }   
+}
