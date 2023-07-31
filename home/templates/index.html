@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Email Tracker</title>
+    <title>Email Tracker - Encontre emails de empresas e organizações</title>
 
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
 
@@ -22,11 +22,10 @@
     <section class="form-container">
 
         <div class="wrapper">
-
             <form method="POST" action="">
                 {% csrf_token %}
                 <h1>Email Tracker</h1>
-                <p>"Email Tracker" é uma ferramenta de busca de emails corporativos projetada 
+                <p class="text-apresentation">"Email Tracker" é uma ferramenta de busca de emails corporativos projetada 
                     para facilitar a identificação<br> e coleta de 
                     endereços de email de empresas e organizações. 
                 </p>
@@ -40,12 +39,7 @@
                     <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                     {% endif %}
                 </div>
-    
-                
                 <div class="remember-forgot">
-
-                    
-                   
                     {% if request.user.is_authenticated %}
                     <a class="logout" href="/sign-out">SAIR</a>
                     {% else %}
@@ -54,32 +48,18 @@
                         <a href="{% provider_login_url 'google' %}" > Entrar com Google</a>
                     </div>
                     {% endif %}
-                    
-                    
                 </div>
-                
-
-                
-    
-    
             </form>
-    
-     
-    
         </div>
 
         
         {% if search_confirm %}
         <div class="content-email">
-
             <div class="results-detail">
                 <h4>Resultados para: &nbsp; <small>{{ domain }}</small></h4>
                 <h4>Organização: &nbsp; <small>{% if industry == None %} Sem dados da organização {% else %} {{ industry }} {% endif %}</small></h4>    
             </div>
-
             <div class="content">
-
-
                 {% for email in emails %}
                 <div class="content-email-loop">
                     <di class="email-detail">
@@ -92,8 +72,8 @@
                     <ul>
                         {% for source in email.sources %}
                             <li>
-                                <p><strong>Domínio: </strong>{{ source.domain }}</p>
-                                <p class="p-detail"><strong>URI: </strong>{{ source.uri }}</p>
+                                <p><strong>Domínio: </strong>{{ source.domain|truncatechars:15 }}</p>
+                                <p class="p-detail"><strong>URI: </strong>{{ source.uri|truncatechars:25 }}</p>
                                 <p class="p-detail"><strong>Extraído em: </strong>{{ source.extracted_on }}</p>
                                 <p class="p-detail"><strong>Visto pela última vez em: </strong>{{ source.last_seen_on }}</p>
                                 <p class="p-detail"><strong>Está na página: </strong>{{ source.still_on_page }}</p>
@@ -102,45 +82,39 @@
                     </ul>
                 </div>
                 {% endfor %}
-
-           
-                
             </div>
-
-        
         </div>
-
         {% endif %}
 
 
 
-    {% comment %}
-    <h1>Resultados da Pesquisa de E-mails</h1>
-    <p>Domínio: {{ domain }}</p>
-    <p>Indústria: {{ industry }}</p>
+        {% comment %}
+        <h1>Resultados da Pesquisa de E-mails</h1>
+        <p>Domínio: {{ domain }}</p>
+        <p>Indústria: {{ industry }}</p>
 
-    <h2>E-mails Encontrados:</h2>
-    <div>
-        {% for email in emails %}
-            <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
-                <p><strong>E-mail: </strong>{{ email.value }}</p>
-                <p><strong>Tipo: </strong>{{ email.type }}</p>
-                <p><strong>Confiança: </strong>{{ email.confidence }}</p>
-                <p><strong>Fontes: </strong></p>
-                <ul>
-                    {% for source in email.sources %}
-                        <li>
-                            <p><strong>Domínio: </strong>{{ source.domain }}</p>
-                            <p><strong>URI: </strong>{{ source.uri }}</p>
-                            <p><strong>Extraído em: </strong>{{ source.extracted_on }}</p>
-                            <p><strong>Visto pela última vez em: </strong>{{ source.last_seen_on }}</p>
-                            <p><strong>Está na página: </strong>{{ source.still_on_page }}</p>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-        {% endfor %}
-    </div>
+        <h2>E-mails Encontrados:</h2>
+        <div>
+            {% for email in emails %}
+                <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
+                    <p><strong>E-mail: </strong>{{ email.value }}</p>
+                    <p><strong>Tipo: </strong>{{ email.type }}</p>
+                    <p><strong>Confiança: </strong>{{ email.confidence }}</p>
+                    <p><strong>Fontes: </strong></p>
+                    <ul>
+                        {% for source in email.sources %}
+                            <li>
+                                <p><strong>Domínio: </strong>{{ source.domain }}</p>
+                                <p><strong>URI: </strong>{{ source.uri }}</p>
+                                <p><strong>Extraído em: </strong>{{ source.extracted_on }}</p>
+                                <p><strong>Visto pela última vez em: </strong>{{ source.last_seen_on }}</p>
+                                <p><strong>Está na página: </strong>{{ source.still_on_page }}</p>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+        </div>
     {% endcomment %}
     
 
