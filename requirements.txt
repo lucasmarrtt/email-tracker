@@ -19,6 +19,7 @@ googleapis-common-protos==1.59.1
 googleauthentication==0.0.17
 grpc-google-iam-v1==0.12.6
 grpcio==1.56.2
+gunicorn==21.2.0
 httplib2==0.22.0
 idna==3.4
 libcst==1.0.1
