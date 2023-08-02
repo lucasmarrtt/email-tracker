@@ -36,7 +36,8 @@
             </div>
 
             <div class=form>
-                <form>
+                <form method="POST" action="">
+                    {% csrf_token %}
                     <input {% if request.user.is_anonymous %} id="block-form" {% endif %} type="text" name="search" {% if search_confirm %} value="{{ search }}" {% endif %} autocomplete="off" placeholder="Digite um domínio. Ex: google.com...">
                     <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form>
