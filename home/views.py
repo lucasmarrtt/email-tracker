@@ -85,12 +85,12 @@ def index(request):
 
             }
 
-            return render(request, 'index.html', context)
+            return render(request, 'new_index.html', context)
         else:
             print(f"Erro da API: {api_result.status_code}")
             return HttpResponse("Erro da API: Não foi possível obter os dados.")
     else:
-        return render(request, 'index.html')
+        return render(request, 'new_index.html')
 
 
 def sign_out(request):

@@ -1,0 +1,117 @@
+{% load static %}
+{% load socialaccount %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Tracker - Encontre emails de empresas e organizações</title>
+
+    <link rel="stylesheet" href="{% static 'assets/css/new_style.css' %}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+
+
+    
+    
+
+    <section class="container">
+        
+        <div class="wrapper">
+            
+            <div class="title">
+                <h1>Email Tracker</h1>
+                <p>Adaptar o design do seu site ou aplicativo para telas com resoluções 
+                menores, como os dispositivos mencionados, é um ótimo começo e garantirá</p>
+            </div>
+            <div class="icon">
+                <p><a href="https://www.linkedin.com/in/lucasmarrtt/" target="_blank">Lucas Mart</a></p>
+                <i class="fa-brands fa-linkedin-in"></i>
+            </div>
+
+            <div class=form>
+                <form>
+                    <input {% if request.user.is_anonymous %} id="block-form" {% endif %} type="text" name="search" {% if search_confirm %} value="{{ search }}" {% endif %} autocomplete="off" placeholder="Digite um domínio. Ex: google.com...">
+                    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+            </div>
+
+            <div class="button-login">
+                {% if request.user.is_authenticated %}
+                <a class="logout" href="/sign-out">SAIR</a>
+                {% else %}
+                <button id="meuBotao"><i class="fa-brands fa-google"></i>Entrar com Google</button>
+                {% endif %}
+            </div>
+
+        </div>
+
+        {% if search_confirm %}
+        <div class="content">
+            <div class="content-result">
+                <p>Resultado para: {{ domain }}</p>
+                <p>Organização: {% if industry == None %} Sem dados da organização {% else %} {{ industry }} {% endif %}</p>
+            </div>
+
+            <!-- Loop Here -->
+            {% for email in emails %}
+            <div class="content-detail">
+
+                <div class="content-detail-p">
+                    <p><i class="fa-solid fa-envelope"></i>Email: {{ email.value }}</p>
+                    <p><i class="fa-solid fa-layer-group"></i>Tipo: {{ email.type }}</p>
+                    <p><i class="fa-solid fa-circle-check"></i>Confiança: {{ email.confidence }}</p>
+                </div>
+
+                <div class="content-detail-info">
+                    <p>FONTE</p>
+                    <hr></hr>
+
+                    <!-- Loop Here -->
+                    {% for source in email.sources %}
+                    <ul>
+                        <li><span>Domínio:</span>{{ source.domain|truncatechars:15 }}</li>
+                        <li><span>URL:</span>{{ source.uri|truncatechars:25 }}</li>
+                        <li><span>Extraído em:</span>{{ source.extracted_on }}</li>
+                        <li><span>Visto por último em:</span>{{ source.last_seen_on }}</li>
+                        <li><span>Está na página:</span>{{ source.still_on_page }}</li>
+                    </ul>
+                    {% endfor %}
+
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+        {% endif %}
+
+    </section>
+
+
+
+    <script>
+        // Função para redirecionar ao clicar no botão
+        function redirecionar() {
+          // Substitua "URL_DESTINO" pela URL da página para onde você quer redirecionar
+          window.location.href = "{% provider_login_url 'google' %}";
+        }
+        
+        // Adicionando um evento de clique ao botão e chamando a função "redirecionar"
+        document.getElementById("meuBotao").addEventListener("click", redirecionar);
+    </script>
+
+
+ 
+
+    
+
+    
+    
+</body>
+</html>
