@@ -65,7 +65,8 @@
                     <di class="email-detail">
                         <p><i class="fa-solid fa-envelope" style="color: #3e6fca;"></i> &nbsp; <strong>E-mail: </strong>{{ email.value }}</p>
                         <p><i class="fa-solid fa-layer-group"></i> &nbsp; <strong>Tipo: </strong>{{ email.type }}</p>
-                        <p><i class="fa-solid fa-circle-check" style="color: {% if email.confidence <= 75 %}  orange; {% elif email.confidence >= 56  %} green; {% endif %}"></i> &nbsp; <strong>Confiança: </strong>{{ email.confidence }}</p>  
+                        <p><i class="fa-solid fa-circle-check" style="color: {% if email.confidence <= 50 %}red; {% elif email.confidence <= 70 %}orange; {% else %}green; {% endif %}"></i>
+                            &nbsp; <strong>Confiança: </strong>{{ email.confidence }}</p>  
                     </di>
                     <p><strong>Fontes: </strong></p>
                     <hr>
