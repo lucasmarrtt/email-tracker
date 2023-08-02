@@ -69,7 +69,7 @@
                 <div class="content-detail-p">
                     <p><i class="fa-solid fa-envelope"></i>Email: {{ email.value }}</p>
                     <p><i class="fa-solid fa-layer-group"></i>Tipo: {{ email.type }}</p>
-                    <p><i class="fa-solid fa-circle-check"></i>Confiança: {{ email.confidence }}</p>
+                    <p><i class="fa-solid fa-circle-check" style="color: {% if email.confidence <= 50 %} red; {% elif email.confidence <= 70 %} orange; {% else %} green; {% endif %}"></i>Confiança: {{ email.confidence }}</p>
                 </div>
 
                 <div class="content-detail-info">
@@ -78,13 +78,15 @@
 
                     <!-- Loop Here -->
                     {% for source in email.sources %}
-                    <ul>
-                        <li><span>Domínio:</span>{{ source.domain|truncatechars:15 }}</li>
-                        <li><span>URL:</span>{{ source.uri|truncatechars:25 }}</li>
-                        <li><span>Extraído em:</span>{{ source.extracted_on }}</li>
-                        <li><span>Visto por último em:</span>{{ source.last_seen_on }}</li>
-                        <li><span>Está na página:</span>{{ source.still_on_page }}</li>
-                    </ul>
+                        {% if loop.index <= 3 %}
+                        <ul>
+                            <li><span>Domínio:</span>{{ source.domain|truncatechars:15 }}</li>
+                            <li><span>URL:</span>{{ source.uri|truncatechars:25 }}</li>
+                            <li><span>Extraído em:</span>{{ source.extracted_on }}</li>
+                            <li><span>Visto por último em:</span>{{ source.last_seen_on }}</li>
+                            <li><span>Está na página:</span>{{ source.still_on_page }}</li>
+                        </ul>
+                        {% endif %}
                     {% endfor %}
 
                 </div>

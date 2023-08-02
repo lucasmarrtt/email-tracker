@@ -65,13 +65,14 @@
                     <di class="email-detail">
                         <p><i class="fa-solid fa-envelope" style="color: #3e6fca;"></i> &nbsp; <strong>E-mail: </strong>{{ email.value }}</p>
                         <p><i class="fa-solid fa-layer-group"></i> &nbsp; <strong>Tipo: </strong>{{ email.type }}</p>
-                        <p><i class="fa-solid fa-circle-check" style="color: {% if email.confidence <= 50 %}red; {% elif email.confidence <= 70 %}orange; {% else %}green; {% endif %}"></i>
+                        <p><i class="fa-solid fa-circle-check" style="color: {% if email.confidence <= 50 %} red; {% elif email.confidence <= 70 %} orange; {% else %} green; {% endif %}"></i>
                             &nbsp; <strong>Confiança: </strong>{{ email.confidence }}</p>  
                     </di>
                     <p><strong>Fontes: </strong></p>
                     <hr>
                     <ul>
                         {% for source in email.sources %}
+                            {% if loop.index <= 3 %}
                             <li>
                                 <p><strong>Domínio: </strong>{{ source.domain|truncatechars:15 }}</p>
                                 <p class="p-detail"><strong>URI: </strong>{{ source.uri|truncatechars:25 }}</p>
@@ -79,6 +80,7 @@
                                 <p class="p-detail"><strong>Visto pela última vez em: </strong>{{ source.last_seen_on }}</p>
                                 <p class="p-detail"><strong>Está na página: </strong>{{ source.still_on_page }}</p>
                             </li>
+                            {% endif %}
                         {% endfor %}
                     </ul>
                 </div>
