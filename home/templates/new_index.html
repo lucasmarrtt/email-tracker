@@ -78,7 +78,6 @@
 
                     <!-- Loop Here -->
                     {% for source in email.sources %}
-                        {% if loop.index <= 3 %}
                         <ul>
                             <li><span>Domínio:</span>{{ source.domain|truncatechars:15 }}</li>
                             <li><span>URL:</span>{{ source.uri|truncatechars:25 }}</li>
@@ -86,7 +85,6 @@
                             <li><span>Visto por último em:</span>{{ source.last_seen_on }}</li>
                             <li><span>Está na página:</span>{{ source.still_on_page }}</li>
                         </ul>
-                        {% endif %}
                     {% endfor %}
 
                 </div>
