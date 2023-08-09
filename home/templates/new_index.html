@@ -17,10 +17,6 @@
 </head>
 <body>
 
-
-    
-    
-
     <section class="container">
         
         <div class="wrapper">
@@ -99,22 +95,13 @@
 
 
     <script>
-        // Função para redirecionar ao clicar no botão
+        
         function redirecionar() {
-          // Substitua "URL_DESTINO" pela URL da página para onde você quer redirecionar
           window.location.href = "{% provider_login_url 'google' %}";
         }
-        
-        // Adicionando um evento de clique ao botão e chamando a função "redirecionar"
         document.getElementById("meuBotao").addEventListener("click", redirecionar);
+
     </script>
-
-
- 
-
-    
-
-    
     
 </body>
 </html>
