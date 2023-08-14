@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 import requests
+from . models import Search
 
 # Create your views here.
 
@@ -49,6 +50,11 @@ def index(request):
             return HttpResponse("Nenhum termo de pesquisa fornecido.")
 
         api_result = requests.get(f'https://api.hunter.io/v2/domain-search?domain={search}&api_key={HUNTER_API_KEY}')
+
+        get_search = Search()
+        get_search.term = search
+        get_search.save()
+
 
         if api_result.status_code == 200:
             response_data = api_result.json()
