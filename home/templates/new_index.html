@@ -27,9 +27,8 @@
         <div class="wrapper">
             
             <div class="title">
-                <h1>Email Tracker</h1>
-                <p>Adaptar o design do seu site ou aplicativo para telas com resoluções 
-                menores, como os dispositivos mencionados, é um ótimo começo e garantirá</p>
+                <h1><a  href="/">Email Tracker</a></h1>
+                <p>Domínio Descoberto: Encontre E-mails com Facilidade e Precisão</p>
             </div>
             <div class="icon">
                 <p><a href="https://www.linkedin.com/in/lucasmarrtt/" target="_blank">Lucas Mart</a></p>
@@ -39,21 +38,12 @@
             <div class=form>
                 <form method="POST" action="">
                     {% csrf_token %}
-                    <input {% if request.user.is_anonymous %} id="block-form" {% endif %} type="text" name="search" {% if search_confirm %} value="{{ search }}" {% endif %} autocomplete="off" placeholder="Digite um domínio. Ex: google.com...">
-                    {% if request.user.is_authenticated %}
+                    <input type="text" name="search" value="{{ search }}" autocomplete="off" placeholder="Digite um domínio. Ex: google.com...">
                     <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-                    {% endif %}
                 </form>
             </div>
 
-            <div class="button-login">
-                {% if request.user.is_authenticated %}
-                <a class="logout" href="/sign-out">SAIR</a>
-                {% else %}
-                <button id="meuBotao"><i class="fa-brands fa-google"></i>Entrar com Google</button>
-                {% endif %}
-            </div>
-
+            
         </div>
 
         {% if search_confirm %}

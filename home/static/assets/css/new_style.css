@@ -90,7 +90,8 @@ body{
     outline: none;
     border: 2px solid rgba(255, 255, 255, .2);
     font-size: 16px;
-    color: #fff;
+    color: yellow;
+    font-weight: 800;
     height: 45px;
 }
 
@@ -235,7 +236,7 @@ body{
     align-items: center;
     outline: none;
     cursor: pointer;
-    background: yellow;
+    background: #edbe3b;
     border-radius: 50%;
 }
 
