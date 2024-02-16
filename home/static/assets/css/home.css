@@ -1,0 +1,340 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;1,200&display=swap');
+
+
+:root {
+    --white: #FFFFFC;
+    --black: #020300;
+    --purple: #7F27FF;
+    --yellow: #F9E900;
+    --green: #CEFF1A; 
+}
+
+h1 {
+    font-size: 11.391rem;
+}
+
+h2 {
+    font-size: 7.594rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+input:focus {
+    outline: none;
+}
+
+li {
+    list-style: none;
+}
+
+body {
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    width: 100%;
+    background: url('../images/email-tracker.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    padding: 25px 10%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#video-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+@media(min-aspect-ratio: 16/9){
+    #video-back {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(0, 0, 0, 0.8);
+    z-index: -1;
+}
+
+.header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+}
+
+.footer{
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    color: var(--white);
+}
+
+.logo {
+    width: 200px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.logo h2{
+    color: var(--white);
+    font-weight: 800;
+    font-size: 24px;
+}
+
+.form-container {
+    flex: 1;
+}
+
+.form-container form {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 60px;
+    gap: 15px;  
+}
+
+.form-container form input {
+    /* flex-grow: 1; */
+    width: 50%;
+    height: 55px;
+    border: none;
+    font-size: 18px;
+    font-weight: 900;
+    background: var(--white);
+    padding: 0 0 0 10px;
+    border-radius: 100px;
+}
+
+.form-container form button {
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    background: var(--green);
+    border: none;
+    color: var(--black);
+    font-size: 24px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.form-container form button:hover {
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    background: var(--yellow);
+    border: none;
+    color: var(--black);
+    font-size: 24px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+
+
+.content{
+    padding: 60px 0;
+    overflow: auto; /* ou overflow: scroll; */
+}
+
+.content-result{
+    background: red;
+    margin-bottom: 40px;
+    padding: 10px 20px;
+    color: #fff;
+}
+
+
+
+
+
+
+
+
+
+
+.title h1{
+    font-size: 5.063rem;
+    color: var(--white);
+}
+
+.title h6{
+    font-size: 1.1rem;
+    color: var(--white);
+    
+}
+
+.items {
+    margin-top: 25px;
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.items .linkedin {
+    background: var(--green);
+    height: 60px;
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--black);
+    cursor: pointer;
+    font-size: 24px;
+    border-radius: 100%;
+}
+
+.items .github {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    cursor: pointer;
+    font-size: 24px;
+    transition: 0.3s;
+}
+
+.items .github:hover {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--purple);
+    cursor: pointer;
+    font-size: 24px;
+    transition: 0.3s;
+}
+
+.items .github i {
+    margin-right: 10px;
+}
+
+
+
+
+.content-result{
+    background: #020300;
+    overflow: auto; /* ou overflow: scroll; */
+}
+
+.content-detail{
+    background: #FFFFFC;
+    overflow: auto; /* ou overflow: scroll; */
+}
+
+
+
+
+  @media screen and (max-width: 750px) {
+
+    body {
+        position: relative;
+        font-family: 'Poppins', sans-serif;
+        min-height: 100vh;
+        width: 100%;
+        background: url('../images/email-tracker.jpg');
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        overflow: hidden;
+        padding: 25px 5%;
+    }
+
+    .logo {
+        display: none;
+    }
+
+    .form-container form input {
+        /* flex-grow: 1; */
+        width: 100%;
+        height: 50px;
+        border: none;
+        font-size: 18px;
+        font-weight: 900;
+        background: var(--white);
+        padding: 0 0 0 10px;
+        border-radius: 100px;
+    }
+
+    .form-container form button {
+        border-radius: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 60px;
+        height: 50px;
+        background: var(--green);
+        border: none;
+        color: var(--black);
+        font-size: 24px;
+        transition: 0.3s;
+        cursor: pointer;
+    }
+    
+    .form-container form button:hover {
+        border-radius: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 60px;
+        height: 50px;
+        background: var(--yellow);
+        border: none;
+        color: var(--black);
+        font-size: 24px;
+        transition: 0.3s;
+        cursor: pointer;
+    }
+
+    .title h1{
+        font-size: 3.375rem;
+        color: var(--white);
+    }
+
+    .items .linkedin {
+        background: var(--green);
+        height: 50px;
+        width: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--black);
+        cursor: pointer;
+        font-size: 24px;
+        border-radius: 100%;
+    }
+
+ 
+    
+
+    
+}
