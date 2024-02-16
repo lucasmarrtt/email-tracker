@@ -279,8 +279,12 @@ body {
 }
 
 .content-detail{
-    background: #FFFFFC;
-    margin: 15px 0;
+
+    margin: 25px 0;
+    padding: 10px 20px;
+    border-radius: 100px;
+    color: var(--white);
+    font-weight: 900;
 }
 
 
@@ -347,7 +351,7 @@ body {
 }
 
 .title h1{
-    font-size: 3.375rem;
+    font-size: 3.175rem;
     color: var(--white);
 }
 
@@ -363,6 +367,16 @@ body {
     font-size: 24px;
     border-radius: 100%;
 }
+
+.items {
+    margin-top: 25px;
+    width: 180px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
 
  
     
