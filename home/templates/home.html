@@ -41,7 +41,7 @@
             <div class="form-container">
                 <form method="POST" id="meuForm">
                     {% csrf_token %}
-                    <input type="text" name="search" placeholder="Ex: google.com" autocomplete="off">
+                    <input type="text" name="search" placeholder="Ex: google.com" autocomplete="off" id="myInput">
                     <button><i class='bx bx-search-alt-2'></i></button>
                 </form>
             </div>
@@ -123,8 +123,8 @@
     
                             // Adiciona os resultados ao HTML
                             $('.content').append('<div class="content-result">' +
-                                '<p>Resultado para: ' + data.domain + '</p>' +
-                                '<p>Organização: ' + (data.industry == null ? 'Sem dados da organização' : data.industry) + '</p>' +
+                                '<h4>Result For:<i> ' + data.domain + '</i></h4>' +
+                                '<h6>Organização: ' + (data.industry == null ? 'Sem dados da organização' : data.industry) + '</h6>' +
                                 '</div>');
     
                             // Adiciona os resultados do loop ao HTML
@@ -164,6 +164,27 @@
         });
     </script>
 
+
+ <script>
+    // Array with placeholder messages
+    var placeholderMessages = [
+      "Type the domain here...",
+      "Example: mydomain.com",
+      "Remember to include the 'www.' prefix",
+      "Enter only the domain name, without 'http://' or 'https://'",
+      "Do not include special characters, such as '@' or '?'"
+    ];
+
+    // Function to change the placeholder
+    function changePlaceholder() {
+      var input = document.getElementById("myInput");
+      var newMessage = placeholderMessages[Math.floor(Math.random() * placeholderMessages.length)];
+      input.setAttribute("placeholder", newMessage);
+    }
+
+    // Call the placeholder change function every 5 seconds
+    setInterval(changePlaceholder, 5000);
+  </script>
 
 
     
