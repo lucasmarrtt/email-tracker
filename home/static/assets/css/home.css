@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;1,200&display=swap');
 
-
 :root {
     --white: #FFFFFC;
     --black: #020300;
@@ -59,6 +58,10 @@ input:focus {
 
 li {
     list-style: none;
+}
+
+a {
+    text-decoration: none;
 }
 
 body {
@@ -192,13 +195,9 @@ body {
 
 .content {
     padding: 60px 0;
-    
 }
 
-
-.content ul{
-    background: #CEFF1A;
-    padding-left: 15px;
+.content ul {
     display: none;
 }
 
@@ -213,12 +212,12 @@ body {
 
 
 
-.title h1{
+.title h1 {
     font-size: 5.063rem;
     color: var(--white);
 }
 
-.title h6{
+.title h6 {
     font-size: 1.1rem;
     color: var(--white);
     
@@ -277,7 +276,6 @@ body {
 }
 
 .content-detail{
-
     margin: 25px 0;
     padding: 10px 20px;
     border-radius: 100px;
