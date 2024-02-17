@@ -2,18 +2,14 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 import requests
 from . models import Search
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
+import requests
+import json
+
 
 # Create your views here.
 
-
-import requests
-from django.http import HttpResponse
-from django.shortcuts import render
-import json
-
 HUNTER_API_KEY = 'f682560568da2d1e777425be0d561920ba8ba909'
-
 
 
 def index(request):
@@ -75,9 +71,3 @@ def index(request):
 
     else:
         return render(request, 'home.html')
-
-
-
-def sign_out(request):
-    logout(request)
-    return redirect('/')

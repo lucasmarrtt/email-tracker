@@ -1,207 +1,130 @@
 {% load static %}
-
-
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EmailTracker - By: Lucas Martin</title>
-    <link rel="stylesheet" href="{% static 'assets/css/home.css' %}">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-
-    <!-- Box Icons -->
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-
-
-</head>
-<body>
-
-    <video autoplay muted loop src="{% static 'assets/video/video.mp4' %}" id="video-back"></video>
-
-    <div class="overlay"></div>
-
-    
-
-
-    
-
-        
-
-
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>EmailTracker - By: Lucas Martin</title>
+        <link rel="stylesheet" href="{% static 'assets/css/home.css' %}">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <!-- Box Icons -->
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    </head>
+    <body>
+        <video autoplay muted loop src="{% static 'assets/video/video.mp4' %}" id="video-back"></video>
+        <div class="overlay"></div>
         <div class="header">
-        
             <div class="logo">
                 <h2>Email Tracker</h2>
             </div>
-    
-    
-            
             <div class="form-container">
                 <form method="POST" id="meuForm">
                     {% csrf_token %}
-                    <input type="text" name="search" placeholder="Ex: google.com" autocomplete="off" id="myInput">
+                    <input type="text" name="search" placeholder="Enter Domain..." autocomplete="off" id="myInput">
                     <button><i class='bx bx-search-alt-2'></i></button>
                 </form>
             </div>
-        
-    
-    
         </div>
-    
-    
-    
-    
-       
-    
-    
-    
         <div class="content">
-            
-    
             <div class="title">
                 <h1>Search For Domain Emails...</h1>
-                <h6>Email Tracker: Effortlessly find email addresses associated with domains. Streamline outreach and networking with powerful search capabilities<h6>
+                <h6>
+                Email Tracker: Effortlessly find email addresses associated with domains. Streamline outreach and networking with powerful search capabilities
+                <h6>
                 <div class="items">
                     <a class="linkedin"><i class='bx bxl-linkedin'></i></a>
                     <a class="github"><i class='bx bxl-github' ></i>Github</a>
                 </div>
-
-                
-    
-               
-    
-    
-    
             </div>
-    
-    
         </div>
-
-
         <div class="footer">
             <small>Developed by Lucas Martin</small>
         </div>
-
-
-    
-
-
-    
-
-
-    
-
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" 
-    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-
-
-
-    <script>
-        $(document).ready(function () {
-            $('#meuForm').submit(function (event) {
-                event.preventDefault();
-    
-                var formData = $(this).serialize();
-    
-                $.ajax({
-                    type: 'POST',
-                    url: '{% url "index" %}',
-                    data: formData,
-                    dataType: 'json',
-                    success: function (data) {
-                        if ('error' in data) {
-                            alert(data.error);
-                        } else {
-                            // Limpa a div de resultados antes de adicionar os novos resultados
-                            $('.content').empty();
-    
-                            // Adiciona os resultados ao HTML
-                            $('.content').append('<div class="content-result">' +
-                                '<p>Result For:<i> ' + data.domain + '</i></p>' +
-                                '<p>Organização: ' + (data.industry == null ? 'Sem dados da organização' : data.industry) + '</p>' +
-                                '</div>');
-    
-                            // Adiciona os resultados do loop ao HTML
-                            for (var i = 0; i < data.emails.length; i++) {
-                                var email = data.emails[i];
-                                $('.content').append('<div class="content-detail">' +
-                                    '<div class="content-detail-p">' +
-                                    '<p><i class="fa-solid fa-envelope"></i>Email: ' + email.value + '</p>' +
-                                    '<p><i class="fa-solid fa-layer-group"></i>Tipo: ' + email.type + '</p>' +
-                                    '<p><i class="fa-solid fa-circle-check" style="color: ' + (email.confidence <= 50 ? 'red' : (email.confidence <= 70 ? 'orange' : 'green')) + '"></i>Confiança: ' + email.confidence + '</p>' +
-                                    '</div>' +
-                                    '<div class="content-detail-info">' +
-                                    '<p>FONTE</p>' +
-                                    '<hr></hr>');
-    
-                                // Adiciona os resultados do segundo loop ao HTML
-                                for (var j = 0; j < email.sources.length; j++) {
-                                    var source = email.sources[j];
-                                    $('.content').append('<ul>' +
-                                        '<li><span>Domínio:</span>' + source.domain.substring(0, 15) + '</li>' +
-                                        '<li><span>URL:</span>' + source.uri.substring(0, 25) + '</li>' +
-                                        '<li><span>Extraído em:</span>' + source.extracted_on + '</li>' +
-                                        '<li><span>Visto por último em:</span>' + source.last_seen_on + '</li>' +
-                                        '<li><span>Está na página:</span>' + source.still_on_page + '</li>' +
-                                        '</ul>');
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" 
+            integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" 
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script>
+            $(document).ready(function () {
+                $('#meuForm').submit(function (event) {
+                    event.preventDefault();
+            
+                    var formData = $(this).serialize();
+            
+                    $.ajax({
+                        type: 'POST',
+                        url: '{% url "index" %}',
+                        data: formData,
+                        dataType: 'json',
+                        success: function (data) {
+                            if ('error' in data) {
+                                alert(data.error);
+                            } else {
+                                // Limpa a div de resultados antes de adicionar os novos resultados
+                                $('.content').empty();
+            
+                                // Adiciona os resultados ao HTML
+                                $('.content').append('<div class="content-result">' +
+                                    '<p>Result For:<i> ' + data.domain + '</i></p>' +
+                                    '<p>Organização: ' + (data.industry == null ? 'Sem dados da organização' : data.industry) + '</p>' +
+                                    '</div>');
+            
+                                // Adiciona os resultados do loop ao HTML
+                                for (var i = 0; i < data.emails.length; i++) {
+                                    var email = data.emails[i];
+                                    $('.content').append('<div class="content-detail">' +
+                                        '<div class="content-detail-p">' +
+                                        '<p><i class="fa-solid fa-envelope"></i>Email: ' + email.value + '</p>' +
+                                        '<p><i class="fa-solid fa-layer-group"></i>Tipo: ' + email.type + '</p>' +
+                                        '<p><i class="fa-solid fa-circle-check" style="color: ' + (email.confidence <= 50 ? 'red' : (email.confidence <= 70 ? 'orange' : 'green')) + '"></i>Confiança: ' + email.confidence + '</p>' +
+                                        '</div>' +
+                                        '<div class="content-detail-info">' +
+                                        '<p>FONTE</p>' +
+                                        '<hr></hr>');
+            
+                                    // Adiciona os resultados do segundo loop ao HTML
+                                    for (var j = 0; j < email.sources.length; j++) {
+                                        var source = email.sources[j];
+                                        $('.content').append('<ul>' +
+                                            '<li><span>Domínio:</span>' + source.domain.substring(0, 15) + '</li>' +
+                                            '<li><span>URL:</span>' + source.uri.substring(0, 25) + '</li>' +
+                                            '<li><span>Extraído em:</span>' + source.extracted_on + '</li>' +
+                                            '<li><span>Visto por último em:</span>' + source.last_seen_on + '</li>' +
+                                            '<li><span>Está na página:</span>' + source.still_on_page + '</li>' +
+                                            '</ul>');
+                                    }
+            
+                                    $('.content').append('</div></div>');
                                 }
-    
-                                $('.content').append('</div></div>');
                             }
+                        },
+                        error: function () {
+                            alert('Erro ao enviar a solicitação AJAX.');
                         }
-                    },
-                    error: function () {
-                        alert('Erro ao enviar a solicitação AJAX.');
-                    }
+                    });
                 });
             });
-        });
-    </script>
-
-
- <script>
-    // Array with placeholder messages
-    var placeholderMessages = [
-      "Type the domain here...",
-      "Example: mydomain.com",
-      "Remember to include the 'www.' prefix",
-      "Enter only the domain name, without 'http://' or 'https://'",
-      "Do not include special characters, such as '@' or '?'"
-    ];
-
-    // Function to change the placeholder
-    function changePlaceholder() {
-      var input = document.getElementById("myInput");
-      var newMessage = placeholderMessages[Math.floor(Math.random() * placeholderMessages.length)];
-      input.setAttribute("placeholder", newMessage);
-    }
-
-    // Call the placeholder change function every 5 seconds
-    setInterval(changePlaceholder, 5000);
-  </script>
-
-
-    
-
-    
-
-
-    
-
-
-    
-
-
-
-
-
- 
-    
-</body>
+        </script>
+        <script>
+            // Array with placeholder messages
+            var placeholderMessages = [
+              "Type the domain here...",
+              "Example: mydomain.com",
+              "Remember to include the 'www.' prefix",
+              "Enter only the domain name, without 'http://' or 'https://'",
+              "Do not include special characters, such as '@' or '?'"
+            ];
+            
+            // Function to change the placeholder
+            function changePlaceholder() {
+              var input = document.getElementById("myInput");
+              var newMessage = placeholderMessages[Math.floor(Math.random() * placeholderMessages.length)];
+              input.setAttribute("placeholder", newMessage);
+            }
+            
+            // Call the placeholder change function every 5 seconds
+            setInterval(changePlaceholder, 5000);
+        </script>
+        <script src="{% static 'assets/js/script.js' %}"></script>
+    </body>
 </html>
